@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width:500px;
+				height:300px;
+				border: 1px solid #000;
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="获取" />
+		<div class="box"></div>
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			var box = document.getElementsByTagName('div')[0];
+			
+			
+			btn.onclick = function(){
+				navigator.geolocation.getCurrentPosition(function(position){
+					var y = position.coords.longitude;
+					var x = position.coords.latitude;
+					box.innerHTML = '纬度是：'+x;
+					box.innerHTML += '<br />经度是：'+y;
+					box.innerHTML += '<br />准确度是：'+position.coords.accuracy;
+					box.innerHTML += '<br />海拔是：'+position.coords.altitude;
+					box.innerHTML += '<br />海拔准确度是：'+position.coords.altitudeAcuracy;
+					box.innerHTML += '<br />行进的方向是：'+position.coords.heading;
+					box.innerHTML += '<br />地面速度是：'+position.coords.speed;
+					box.innerHTML += '<br />时间戳是：'+ new Date(position.timestamp);
+				},
+				function(code){
+					console.log(code)
+				},
+				{
+					enableHighAcuracy:true,
+					maximumAge:3000
+				}
+				);
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

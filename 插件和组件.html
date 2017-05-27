@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.4.js"></script>
+	</head>
+	<body>
+		<ul>
+			<li>11</li>
+			<li>22</li>
+			<li>33</li>
+		</ul>
+		<script type="text/javascript">
+			/*
+			 	插件，组件：反复的调用。
+			 	
+			 	组件：工具性的函数叫做组件。比如$.each(arr,function(){}),$.ajax(),$.map()
+			 	
+			 	插件：功能性的函数，$('li').css(back，red),$('li').anmite()
+			 * 
+			 *
+			 * jq组件的扩展：
+			 * 		$.extend
+			 * 			1:克隆
+			 * 			2：整合对象
+			 * 			3：
+			 * 
+			 * 组件的扩展：
+			 * 		$.extend({
+						方法名：函数
+					});
+			 * 
+			 * 
+			 */
+			
+			var obj = {
+				name:'pl',
+				age:20,
+				arr:[1,2,3,3]
+			}
+			
+			var obj2 = {
+				name:'pl1',
+				age:201
+			};
+			
+			var str = '      taobao    ';
+			function leftTrim(str){
+				return str.replace(/^\s+/,'');
+			}
+			function rightTrim(str){
+				return str.replace(/\s+$/,'');
+			}
+			//$.leftTrim();
+			
+			$.extend({
+				l:leftTrim,
+				rightTrim:rightTrim,
+				arr:Array
+			});
+			
+
+			function Array(obj,fn){
+				for(var i=0;i<obj.length;i++){
+					fn(i,obj[i]);
+				}
+			}
+			
+			var arr1 = [1,2,3,4];
+			
+			
+			$.arr(arr1,function(i,ele){
+				console.log(i,ele);
+			});
+			
+			//console.log(a)
+			
+		</script>
+	</body>
+</html>
